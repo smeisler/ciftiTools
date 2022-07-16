@@ -17,7 +17,8 @@ smooth_cifti(
   cerebellum_fname = NULL,
   subcortical_zeroes_as_NA = FALSE,
   cortical_zeroes_as_NA = FALSE,
-  subcortical_merged = FALSE
+  subcortical_merged = FALSE,
+  debug = FALSE
 )
 
 smoothCIfTI(
@@ -83,6 +84,8 @@ the subcortical volume or cortex be treated as NA? Default: \code{FALSE}.}
 
 \item{subcortical_merged}{Smooth across subcortical structure boundaries?
 Default: \code{FALSE}.}
+
+\item{debug}{T or F}
 }
 \value{
 The \code{cifti_target_fname}, invisibly, if \code{x} was a CIFTI

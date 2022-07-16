@@ -31,6 +31,7 @@
 #'  the subcortical volume or cortex be treated as NA? Default: \code{FALSE}.
 #' @param subcortical_merged Smooth across subcortical structure boundaries?
 #'  Default: \code{FALSE}.
+#' @param debug T or F
 #'
 #' @return The \code{cifti_target_fname}, invisibly, if \code{x} was a CIFTI
 #'  file name. A \code{"xifti"} object if \code{x} was a \code{"xifti"} object.
@@ -46,7 +47,7 @@ smooth_cifti <- function(
   surf_FWHM=5, vol_FWHM=3,
   surfL_fname=NULL, surfR_fname=NULL, cerebellum_fname=NULL,
   subcortical_zeroes_as_NA=FALSE, cortical_zeroes_as_NA=FALSE,
-  subcortical_merged=FALSE){
+  subcortical_merged=FALSE, debug=FALSE){
 
   # Args check -----------------------------------------------------------------
   input_is_xifti <- is.xifti(x, messages=FALSE)
@@ -221,6 +222,7 @@ smooth_cifti <- function(
   }
 
   # Build and run command ------------------------------------------------------
+  if (debug) { return(list(surfL_fname, surfR_fname, cmd)) }
   if (!is.null(surfL_fname)) { cmd <- paste(cmd, "-left-surface", sys_path(surfL_fname)) }
   if (!is.null(surfR_fname)) { cmd <- paste(cmd, "-right-surface", sys_path(surfR_fname)) }
   if (!is.null(cerebellum_fname)) { cmd <- paste(cmd, "-cerebellum-surface", sys_path(cerebellum_fname)) }  
